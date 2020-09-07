@@ -42,7 +42,15 @@ class AllFighters extends StatelessWidget {
             ),
             ),
            
-            figthersTable(),
+
+            Column(
+              children: [
+                Expanded(child: Container()),
+                figthersTable(),
+                Expanded(child: Container()),
+
+              ],
+            ),
             
         ],
       ),
