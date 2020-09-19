@@ -31,12 +31,12 @@ class AllFighters extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-              begin: Alignment(0.0, 0.0),
-              end: Alignment(0.6, 0.99),
-              colors:[
-               Colors.purpleAccent[700],
-               Colors.deepPurpleAccent[400]
-              ]
+               begin: Alignment(0.0, 0.0),
+               end: Alignment(0.6, 0.99),
+              colors: [
+                   const Color(0xFF7B1FA2), 
+                   const Color(0xFF4A148C),
+                ]
               ),
 
             ),

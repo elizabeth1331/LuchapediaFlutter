@@ -7,7 +7,10 @@ String urlKemonito="https://imagenes.milenio.com/bphSgOtpXqNAf5Zn_9i1QK3v2fs=/95
 String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre profesional mexicano, como actualmente trabaja para la empresa Consejo Mundial de Lucha Libre (CMLL). ';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return LayoutBuilder(
+      builder: (context, constraints){
+        if (constraints.maxWidth < 811){
+          Scaffold(
           appBar: AppBar(
             leading: Icon(Icons.directions_walk, size: 50),
             title: Text('Luchapedia',
@@ -26,8 +29,10 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
               begin: Alignment(0.0, 0.0),
               end: Alignment(0.6, 0.99),
               colors:[
-               Colors.redAccent[400],
-               Colors.red[900]
+               const Color(0xFFEF5350), 
+               const Color(0xFFD50000),
+              //const Color(0xFFFFFFEE), 
+              //const Color(0xFFD50000),
               ]
               ),
 
@@ -54,6 +59,65 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
             ]
           ),
 
+    );
+    //
+
+        }else{
+          return Scaffold(
+          appBar: AppBar(
+            leading: Icon(Icons.directions_walk, size: 50),
+            title: Text('Luchapedia Web',
+            style: TextStyle(
+                fontSize: 40, color: Colors.black
+            ),
+            ),
+            backgroundColor: Colors.redAccent[400],
+          ),
+
+          body: Stack(
+            children:[
+              Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+              begin: Alignment(0.0, 0.0),
+              end: Alignment(0.6, 0.99),
+              colors:[
+               const Color(0xFFEF5350), 
+               const Color(0xFFD50000),
+              //const Color(0xFFFFFFEE), 
+              //const Color(0xFFD50000),
+              ]
+              ),
+
+            ),
+            ),
+              Column(
+                
+                children:[
+                  Expanded(child: Container()), //nos ayuda a repartir los widgets en el espacio de la pantalla
+                  luchadorBio(),
+                  /*Expanded(child: Container()),
+                  Text('Mas Luchadores',
+                  style: TextStyle(
+                    fontSize: 29,
+                    color: Color.fromRGBO(220, 229, 227, 0.9) //rojo, verde, azul y su opacidad 1 opacidad y 0 si es trasnparente
+                  ),
+                  ), */
+                  Expanded(child: Container()),
+                  //listaLuchadores(context),
+                  //Expanded(child: Container()),
+                ],
+
+              )
+            ]
+          ),
+
+    );
+    //
+        }
+
+      }
+      
     );
   }//build
 
