@@ -5,8 +5,9 @@ import 'package:luchapedia/all_fighters.dart';
 class BioFighter extends StatelessWidget {
   
 String urlKemonito="https://imagenes.milenio.com/bphSgOtpXqNAf5Zn_9i1QK3v2fs=/958x596/smart/https://www.milenio.com/uploads/media/2020/03/24/kemonito-santiago-chaparro_0_9_958_596.jpeg";
-String bioKweb ="KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre profesional mexicano, como actualmente trabaja para la empresa Consejo Mundial de Lucha Libre (CMLL).\n\n Antes de ser KeMonito, fue conocido como Aluche (1984 - 2003), cabe destacar haber participado bajo este mismo nombre en el programa de television  Odisea de Burbujas, SuperVacaciones y  Las Aventuras de Capulina \n\n De igual forma lucho bajo el nombre de Duende Maya. Como dato curioso tomo el titulo de KeMonito en el año 2003, el cual lo sigue portando hasta la actualidad. ";
 String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre profesional mexicano, como actualmente trabaja para la empresa Consejo Mundial de Lucha Libre (CMLL). ';
+String bioKweb ="KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre profesional mexicano, como actualmente trabaja para la empresa Consejo Mundial de Lucha Libre (CMLL).\n\n Antes de ser KeMonito, fue conocido como Aluche (1984 - 2003), cabe destacar haber participado bajo este mismo nombre en el programa de television  Odisea de Burbujas, SuperVacaciones y  Las Aventuras de Capulina \n\n De igual forma lucho bajo el nombre de Duende Maya. Como dato curioso tomo el titulo de KeMonito en el año 2003, el cual lo sigue portando hasta la actualidad. ";
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -70,7 +71,7 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
                 fontSize: 40, color: Colors.black
             ),
             ),
-            backgroundColor: Colors.redAccent[700],
+            backgroundColor: Colors.redAccent[200],
           ),
 
           body: Stack(
@@ -91,7 +92,7 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
               Row(
                 children: [
                   Expanded(child: luchadorBioWeb(constraints)),
-                  Expanded(child: Container()),
+                  Expanded(child: AllFighters().figthersTable(context)),
                 ],
               )
 
@@ -155,8 +156,7 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
                       Container(
                         margin: EdgeInsets.only(left: 5),
                         child: Text(bioK,
-                         style: 
-                        TextStyle(
+                         style: TextStyle(
                           fontSize: 16, color: Colors.indigo[50]
                         ),
                         ),
@@ -210,14 +210,14 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
         return Stack(
       children: [
         Positioned(
-          top: 60,
-          left: constraints.maxWidth * 0.05,
+          top: 45,
+          left: constraints.maxWidth * 0.05,//distancia con la imagen de iz a derecha
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
             child: FadeInImage.assetNetwork(
               placeholder: "assets/Gifs/loading.gif",
               image: urlKemonito,
-              width: (constraints.maxWidth < 1200) ? 430 : constraints.maxWidth * 0.4,
+              width: (constraints.maxWidth < 1200) ? 430 : constraints.maxWidth * 0.4,//tamaño de la imagen 
             ),
           ),
         ),
@@ -226,11 +226,11 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
           image:NetworkImage(urlKemonito),
           ),*/
         Positioned(
-          top: (constraints.maxWidth < 1200) ? 245 : constraints.maxWidth * 0.2,
-          left: constraints.maxWidth * 0.07,
+          top: (constraints.maxWidth < 1200) ? 200 : constraints.maxWidth * 0.18, // pantalla desponsiva del contenido 
+          left: constraints.maxWidth * 0.07,//distancia de container del texto
                   child: Container(
-              width: (constraints.maxWidth < 1200) ? 380 : constraints.maxWidth * 0.37,
-              height: constraints.maxWidth * 0.5,
+              width: (constraints.maxWidth < 1200) ? 380 : constraints.maxWidth * 0.37,//tamaño responsivo del rectangulo rojo de texto
+              height: constraints.maxWidth * 0.25,//tamaño del container de texto
               decoration: BoxDecoration(
                 color: Colors.pinkAccent[700],
                 borderRadius: BorderRadius.circular(10.0)
@@ -247,27 +247,15 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
                   Container(
                     margin: EdgeInsets.only(left: 5),
                     child: Text(bioKweb,
-                     style: 
-                    TextStyle(
-                      fontSize: (constraints.maxWidth < 1230) ? 15 : 17, color: Colors.indigo[50]
+                     style: TextStyle(
+                      fontSize: (constraints.maxWidth < 1230) ? 14 : 16, color: Colors.indigo[50]
                     ),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,//centra los botones
-                    children: [
-                      FlatButton(
-                      color: Colors.teal[400],  
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)
-                      ),
-                      onPressed: (){},
-                      child: Text('Ver mas', style: TextStyle(fontSize: 18),),
-                      
-                      ),
-
-                      SizedBox(width:30), //Espaciado entre botones se usa en buenas practicas
-                      FlatButton(
+                  Center(
+                    child: Container(
+                      width: 120,
+                      child: FlatButton(
                         color: Colors.pink[400],
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)
@@ -281,9 +269,8 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
                             ]
                         ),
                         
-                        )
-            
-                    ],
+                        ),
+                    ),
                   )
                 ],
               ),
