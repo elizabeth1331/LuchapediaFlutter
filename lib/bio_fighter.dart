@@ -5,13 +5,13 @@ import 'package:luchapedia/all_fighters.dart';
 class BioFighter extends StatelessWidget {
   
 String urlKemonito="https://imagenes.milenio.com/bphSgOtpXqNAf5Zn_9i1QK3v2fs=/958x596/smart/https://www.milenio.com/uploads/media/2020/03/24/kemonito-santiago-chaparro_0_9_958_596.jpeg";
+String bioKweb ="KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre profesional mexicano, como actualmente trabaja para la empresa Consejo Mundial de Lucha Libre (CMLL).\n\n Antes de ser KeMonito, fue conocido como Aluche (1984 - 2003), cabe destacar haber participado bajo este mismo nombre en el programa de television  Odisea de Burbujas, SuperVacaciones y  Las Aventuras de Capulina \n\n De igual forma lucho bajo el nombre de Duende Maya. Como dato curioso tomo el titulo de KeMonito en el año 2003, el cual lo sigue portando hasta la actualidad. ";
 String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre profesional mexicano, como actualmente trabaja para la empresa Consejo Mundial de Lucha Libre (CMLL). ';
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints){
+    return LayoutBuilder(builder: (context, constraints) {
         if (constraints.maxWidth < 811){
-          Scaffold(
+         return  Scaffold(
           appBar: AppBar(
             leading: Icon(Icons.directions_walk, size: 50),
             title: Text('Luchapedia',
@@ -34,10 +34,7 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
                const Color(0xFFD50000),
               //const Color(0xFFFFFFEE), 
               //const Color(0xFFD50000),
-              ]
-              ),
-
-            ),
+              ])),
             ),
               Column(
                 
@@ -73,7 +70,7 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
                 fontSize: 40, color: Colors.black
             ),
             ),
-            backgroundColor: Colors.redAccent[400],
+            backgroundColor: Colors.redAccent[700],
           ),
 
           body: Stack(
@@ -209,18 +206,19 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
   
   
   Widget luchadorBioWeb(BoxConstraints constraints){
-    return Stack(
+   
+        return Stack(
       children: [
         Positioned(
           top: 60,
           left: constraints.maxWidth * 0.05,
           child: ClipRRect(
-            borderRadius:  BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(20.0),
             child: FadeInImage.assetNetwork(
-              placeholder: 'assets/Gifs/loading.gif',
-               image: urlKemonito,
-               width: 450,
-               ),
+              placeholder: "assets/Gifs/loading.gif",
+              image: urlKemonito,
+              width: (constraints.maxWidth < 1200) ? 430 : constraints.maxWidth * 0.4,
+            ),
           ),
         ),
         /*Image(
@@ -228,11 +226,11 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
           image:NetworkImage(urlKemonito),
           ),*/
         Positioned(
-          top: 155,
-          left: 10,
+          top: (constraints.maxWidth < 1200) ? 245 : constraints.maxWidth * 0.2,
+          left: constraints.maxWidth * 0.07,
                   child: Container(
-              width: 330,
-              height: 210,
+              width: (constraints.maxWidth < 1200) ? 380 : constraints.maxWidth * 0.37,
+              height: constraints.maxWidth * 0.5,
               decoration: BoxDecoration(
                 color: Colors.pinkAccent[700],
                 borderRadius: BorderRadius.circular(10.0)
@@ -244,14 +242,14 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
                 children:
                 [
                   Text ('Kemonito:', style: TextStyle(
-                    fontSize: 28, color: Colors.indigo[200]
+                    fontSize: 38, color: Colors.indigo[200]
                   ),),
                   Container(
                     margin: EdgeInsets.only(left: 5),
-                    child: Text(bioK,
+                    child: Text(bioKweb,
                      style: 
                     TextStyle(
-                      fontSize: 16, color: Colors.indigo[50]
+                      fontSize: (constraints.maxWidth < 1230) ? 15 : 17, color: Colors.indigo[50]
                     ),
                     ),
                   ),
