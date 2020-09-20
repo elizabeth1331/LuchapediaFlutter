@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:luchapedia/all_fighters.dart';
 
 class BioFighter extends StatelessWidget {
@@ -65,6 +66,7 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
         }else{
           return Scaffold(
           appBar: AppBar(
+            centerTitle: true,
             leading: Icon(Icons.directions_walk, size: 50),
             title: Text('Luchapedia Web',
             style: TextStyle(
@@ -80,35 +82,22 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
             decoration: BoxDecoration(
               gradient: LinearGradient(
               begin: Alignment(0.0, 0.0),
-              end: Alignment(0.6, 0.99),
+              end: Alignment(0.0, 0.50),
               colors:[
                const Color(0xFFEF5350), 
                const Color(0xFFD50000),
               //const Color(0xFFFFFFEE), 
               //const Color(0xFFD50000),
-              ]
-              ),
-
+              ])),
             ),
-            ),
-              Column(
-                
-                children:[
-                  Expanded(child: Container()), //nos ayuda a repartir los widgets en el espacio de la pantalla
-                  luchadorBio(),
-                  /*Expanded(child: Container()),
-                  Text('Mas Luchadores',
-                  style: TextStyle(
-                    fontSize: 29,
-                    color: Color.fromRGBO(220, 229, 227, 0.9) //rojo, verde, azul y su opacidad 1 opacidad y 0 si es trasnparente
-                  ),
-                  ), */
+              
+              Row(
+                children: [
+                  Expanded(child: luchadorBioWeb(constraints)),
                   Expanded(child: Container()),
-                  //listaLuchadores(context),
-                  //Expanded(child: Container()),
                 ],
-
               )
+
             ]
           ),
 
@@ -217,6 +206,95 @@ String bioK='KeMonito nacio el 3 de julio de 1967, es un icono de la lucha libre
       ),
     );
   }//LuchadorBio
+  
+  
+  Widget luchadorBioWeb(BoxConstraints constraints){
+    return Stack(
+      children: [
+        Positioned(
+          top: 60,
+          left: constraints.maxWidth * 0.05,
+          child: ClipRRect(
+            borderRadius:  BorderRadius.circular(20.0),
+            child: FadeInImage.assetNetwork(
+              placeholder: 'assets/Gifs/loading.gif',
+               image: urlKemonito,
+               width: 450,
+               ),
+          ),
+        ),
+        /*Image(
+          width: 350,
+          image:NetworkImage(urlKemonito),
+          ),*/
+        Positioned(
+          top: 155,
+          left: 10,
+                  child: Container(
+              width: 330,
+              height: 210,
+              decoration: BoxDecoration(
+                color: Colors.pinkAccent[700],
+                borderRadius: BorderRadius.circular(10.0)
+              ),
+              child: 
+              Column(
+                crossAxisAlignment:CrossAxisAlignment.start , //posicion horizontal
+                mainAxisAlignment: MainAxisAlignment.spaceAround,//el como estaran lo elementos dentro de la columna, con espacio entre ellos
+                children:
+                [
+                  Text ('Kemonito:', style: TextStyle(
+                    fontSize: 28, color: Colors.indigo[200]
+                  ),),
+                  Container(
+                    margin: EdgeInsets.only(left: 5),
+                    child: Text(bioK,
+                     style: 
+                    TextStyle(
+                      fontSize: 16, color: Colors.indigo[50]
+                    ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,//centra los botones
+                    children: [
+                      FlatButton(
+                      color: Colors.teal[400],  
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)
+                      ),
+                      onPressed: (){},
+                      child: Text('Ver mas', style: TextStyle(fontSize: 18),),
+                      
+                      ),
+
+                      SizedBox(width:30), //Espaciado entre botones se usa en buenas practicas
+                      FlatButton(
+                        color: Colors.pink[400],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)
+                        ),
+                        onPressed: (){},
+                        child: Row(
+                            children: [
+                              Text('Me gusta'),
+                              Icon(Icons.favorite_border)
+
+                            ]
+                        ),
+                        
+                        )
+            
+                    ],
+                  )
+                ],
+              ),
+            ),
+        ),
+
+      ],
+    );
+  }//LuchadorBioWeb
 
   Widget listaLuchadores(BuildContext context){
     return  Center(
